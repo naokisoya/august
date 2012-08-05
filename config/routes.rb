@@ -1,17 +1,7 @@
 August::Application.routes.draw do
-  get "books/index"
+  resources :books
 
-  get "books/show"
-
-  get "books/new"
-
-  get "books/create"
-
-  get "books/edit"
-
-  get "books/update"
-
-  get "books/destroy"
+  root :to => 'books#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
