@@ -51,6 +51,11 @@ class TweetsController < ApplicationController
         format.json { render json: @tweet.errors, status: :unprocessable_entity }
       end
     end
+    tweet = current_user.tweets.build(params[:tweet])
+    if tweet.save
+      flash[:notice] = "Tweet created!"
+      redirect_to_root_path
+    end
   end
 
   # PUT /tweets/1
@@ -79,5 +84,9 @@ class TweetsController < ApplicationController
       format.html { redirect_to tweets_url }
       format.json { head :no_content }
     end
+    tweet = currrent_user.tweets.find(params[:id])
+    tweet.destroy
+    flash[:notice] = "Tweet destroyed!"
+    redirect_to_root_path
   end
 end

@@ -4,10 +4,13 @@ August::Application.routes.draw do
   devise_for :users
 
   resources :books
+  resources :tweets, :only => [:create, :destroy]
   
   get "home" => "pages#home"
   get "about" => "pages#about"
   get "help" => "pages#help"
+  
+  
   
   root :to => "pages#home"
   # The priority is based upon order of creation:
