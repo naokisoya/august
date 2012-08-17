@@ -1,16 +1,21 @@
 <h1>Pages#home</h1>
 <p>Find me in app/views/pages/home.html.erb</p>
 <h1><%= @title %></h1>
+
 <% @tweets.each do |tweet| %>
-	<%= tweet.user_id %>
-	<%= tweet.content %>
+	<div class="tweet" style="margin-bottom:30px;">
+		<%= tweet.user_id %>
+		<%= tweet.content %>
+		<br />
+		<% if user_signed_in? && tweet.user == current_user %>
+		<%= link_to "delete", tweet, :method => :delete, :confirm => "You sure?"%>
+		<% end %>
+	</div>
 <% end %>
+
 <% if user_signed_in? %>
 	<%= form_for @tweet do |f| -%>
-	<%= f.text_area :content, :size => "60x3" %><br />
-	<%= f.submit "Submit", :disable_with => 'Submiting...'%>
+		<%= f.text_area :content, :size => "60x3" %><br />
+		<%= f.submit "Submit", :disable_with => 'Submiting...'%>
 	<% end -%>
-<% end %>
-<% if user_signed_in? && tweet.user == current_user %>
-<br /><%= link_to "delete", tweet, :method => :delete, :confirm => "You sure?"%>
 <% end %>

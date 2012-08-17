@@ -40,21 +40,17 @@ class TweetsController < ApplicationController
   # POST /tweets
   # POST /tweets.json
   def create
-    @tweet = Tweet.new(params[:tweet])
+    # @tweet = Tweet.new(params[:tweet])
+    @tweet = current_user.tweets.build(params[:tweet])
 
     respond_to do |format|
       if @tweet.save
-        format.html { redirect_to @tweet, notice: 'Tweet was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Tweet was successfully created.' }
         format.json { render json: @tweet, status: :created, location: @tweet }
       else
         format.html { render action: "new" }
         format.json { render json: @tweet.errors, status: :unprocessable_entity }
       end
-    end
-    tweet = current_user.tweets.build(params[:tweet])
-    if tweet.save
-      flash[:notice] = "Tweet created!"
-      redirect_to_root_path
     end
   end
 
@@ -77,16 +73,12 @@ class TweetsController < ApplicationController
   # DELETE /tweets/1
   # DELETE /tweets/1.json
   def destroy
-    @tweet = Tweet.find(params[:id])
+    @tweet = current_user.tweets.find(params[:id])
     @tweet.destroy
 
     respond_to do |format|
-      format.html { redirect_to tweets_url }
+      format.html { redirect_to root_path }
       format.json { head :no_content }
     end
-    tweet = currrent_user.tweets.find(params[:id])
-    tweet.destroy
-    flash[:notice] = "Tweet destroyed!"
-    redirect_to_root_path
   end
 end
