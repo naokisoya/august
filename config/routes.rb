@@ -1,7 +1,12 @@
 August::Application.routes.draw do
+  get "users/index"
+
+  get "users/show"
+
   resources :tweets
 
   devise_for :users
+  resources :users, :only => [:index, :show]
 
   resources :books
   resources :tweets, :only => [:create, :destroy]
