@@ -1,19 +1,13 @@
 August::Application.routes.draw do
-  get "pages/home"
-
-  get "pages/about"
-
-  get "pages/help"
+  devise_for :users
 
   resources :books
-
-  root :to => 'books#index'
-  
-  root :to => "pages#home"
   
   get "home" => "pages#home"
   get "about" => "pages#about"
   get "help" => "pages#help"
+  
+  root :to => "pages#home"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
