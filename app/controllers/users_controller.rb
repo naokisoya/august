@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
   def index
     @users = User.order("created_at DESC")
-    @user = User.find(params[:id])
-    @tweets = @user.tweets
   end
 
   def show
+    @user = User.find(params[:id])
+    @tweets = @user.tweets
   end
   
   def following
@@ -18,4 +18,5 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @users = @user.inverse_friends
     render "index"
+  end
 end
