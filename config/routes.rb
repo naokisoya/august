@@ -7,9 +7,12 @@ August::Application.routes.draw do
 
   devise_for :users
   resources :users, :only => [:index, :show]
+  get "users/:id/following" => "users#following", :as => :following
+  get "users/:id/followers" => "users#followers", :as => :followers
 
   resources :books
   resources :tweets, :only => [:create, :destroy]
+  resources :friendships, :only => [:create, :destroy]
   
   get "home" => "pages#home"
   get "about" => "pages#about"

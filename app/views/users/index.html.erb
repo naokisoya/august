@@ -5,6 +5,7 @@
 <div id="user">
 	<%= user.email %>
 	<%= link_to user.email, user %>
+	<%= link_to_follow_or_unfollow(user) %>
 </div>	
 <% end %>
 <p>Find me in app/views/users/index.html.erb</p>

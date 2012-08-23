@@ -1,3 +1,6 @@
 <h1><%= @user.email %></h1>
 <p>Find me in app/views/users/show.html.erb</p>
 ID:<%= @user.id %><br />
+<%= link_to_follow_or_unfollow(@user) %>
+following: <%= link_to_following(@user) %><br />
+followers: <%= link_to_followers(@user) %><br />

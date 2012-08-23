@@ -10,4 +10,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
   # attr_accessible :title, :body
   has_many :tweets
+  has_many :friends, :through => :friendships
+  has_many :inverse_friendships, :class_name => "Frindship",:foreign_key => "friend_id"
+  has_many :inverse_friends, :through => :inverse_friendships, :source => :user
 end

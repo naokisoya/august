@@ -7,4 +7,15 @@ class UsersController < ApplicationController
 
   def show
   end
+  
+  def following
+    @user = User.find(params[:id])
+    @users = @user.friends
+    render "index"
+  end
+  
+  def followers
+    @user = User.find(params[:id])
+    @users = @user.inverse_friends
+    render "index"
 end
