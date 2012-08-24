@@ -6,6 +6,9 @@
 	<div class="tweet" style="margin-bottom:30px;">
 		<%= tweet.user_id %>
 		<%= tweet.content %>
+		<span style="font-weight: bold;">
+			<%= link_to tweet.user.email,tweet.user %>
+		</span>
 		<br />
 		<% if user_signed_in? && tweet.user == current_user %>
 		<%= link_to "delete", tweet, :method => :delete, :confirm => "You sure?"%>
@@ -19,8 +22,3 @@
 		<%= f.submit "Submit", :disable_with => 'Submiting...'%>
 	<% end -%>
 <% end %>
-
-<span style="font-weight: bold;">
-	<%= link_to tweet.user.email,tweet.user %>
-</span>
-	
