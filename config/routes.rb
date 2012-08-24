@@ -5,7 +5,7 @@ August::Application.routes.draw do
 
   resources :tweets
 
-  devise_for :users
+  devise_for :users,  :controllers => {:registrations => "registrations", :sessions => "sessions"}
   resources :users, :only => [:index, :show]
   get "users/:id/following" => "users#following", :as => :following
   get "users/:id/followers" => "users#followers", :as => :followers
